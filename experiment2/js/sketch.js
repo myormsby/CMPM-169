@@ -1,8 +1,10 @@
-// sketch.js - purpose and description here
-// Author: Madison Ormsby
-// Date: Jan 22 2024
-
 let circles = [];
+
+let backgroundMusic;
+
+function preload() {
+  backgroundMusic = loadSound('sound.mp3'); 
+}
 
 function setup() {
   createCanvas(400, 400);
@@ -20,6 +22,12 @@ function draw() {
       alpha: 255  
     };
     circles.push(newCircle);
+    
+    
+  }
+  
+  if (!backgroundMusic.isPlaying()) {
+    backgroundMusic.play();
   }
 
   // Update and display each circle
