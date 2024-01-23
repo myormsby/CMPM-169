@@ -1,67 +1,52 @@
 // sketch.js - purpose and description here
-// Author: Your Name
-// Date:
+// Author: Madison Ormsby
+// Date: Jan 22 2024
 
-// Here is how you might set up an OOP p5.js project
-// Note that p5.js looks for a file called sketch.js
+let circles = [];
 
-// Constants - User-servicable parts
-// In a longer project I like to put these in a separate file
-const VALUE1 = 1;
-const VALUE2 = 2;
-
-// Globals
-let myInstance;
-let canvasContainer;
-
-class MyClass {
-    constructor(param1, param2) {
-        this.property1 = param1;
-        this.property2 = param2;
-    }
-
-    myMethod() {
-        // code to run when method is called
-    }
-}
-
-// setup() function is called once when the program starts
 function setup() {
-    // place our canvas, making it fit our container
-    canvasContainer = $("#canvas-container");
-    let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
-    canvas.parent("canvas-container");
-    // resize canvas is the page is resized
-    $(window).resize(function() {
-        console.log("Resizing...");
-        resizeCanvas(canvasContainer.width(), canvasContainer.height());
-    });
-    // create an instance of the class
-    myInstance = new MyClass(VALUE1, VALUE2);
-
-    var centerHorz = windowWidth / 2;
-    var centerVert = windowHeight / 2;
+  createCanvas(400, 400);
 }
 
-// draw() function is called repeatedly, it's the main animation loop
 function draw() {
-    background(220);    
-    // call a method on the instance
-    myInstance.myMethod();
+  background(183, 234, 247);
 
-    // Put drawings here
-    var centerHorz = canvasContainer.width() / 2 - 125;
-    var centerVert = canvasContainer.height() / 2 - 125;
-    fill(234, 31, 81);
-    noStroke();
-    rect(centerHorz, centerVert, 250, 250);
-    fill(255);
-    textStyle(BOLD);
-    textSize(140);
-    text("p5*", centerHorz + 10, centerVert + 200);
+  // Check if it's time to spawn a new circle
+  if (random() < 0.05) {
+    let newCircle = {
+      x: random(width),
+      y: random(height),
+      diameter: 30,
+      alpha: 255  
+    };
+    circles.push(newCircle);
+  }
+
+  // Update and display each circle
+  for (let i = circles.length - 1; i >= 0; i--) {
+    let circle = circles[i];
+
+    circle.alpha -= 2;
+    circle.diameter += 1;
+    
+    // Display the circle
+    noFill();
+    stroke(3, 202, 252, circle.alpha);
+    ellipse(circle.x, circle.y, circle.diameter);
+
+    // Remove circles that have faded away
+    if (circle.alpha <= 0) {
+      circles.splice(i, 1);
+    }
+  }
 }
 
-// mousePressed() function is called once after every time a mouse button is pressed
 function mousePressed() {
-    // code to run when mouse is pressed
+  let newCircle = {
+    x: mouseX,
+    y: mouseY,
+    diameter: 40,
+    alpha: 255
+  };
+  circles.push(newCircle);
 }
