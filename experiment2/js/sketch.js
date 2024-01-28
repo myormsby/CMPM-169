@@ -1,10 +1,12 @@
-let circles = [];
-
-let backgroundMusic;
 
 function preload() {
-  backgroundMusic = loadSound('sound.mp3'); 
-}
+    backgroundMusic = loadSound('sound.mp3'); 
+  }
+
+
+let circles = [];
+let backgroundMusic;
+
 
 function setup() {
   createCanvas(400, 400);
@@ -25,10 +27,9 @@ function draw() {
     
     
   }
-  
-  if (!backgroundMusic.isPlaying()) {
+
     backgroundMusic.play();
-  }
+
 
   // Update and display each circle
   for (let i = circles.length - 1; i >= 0; i--) {
