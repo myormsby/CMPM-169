@@ -1,22 +1,27 @@
-
-function preload() {
-    backgroundMusic = loadSound('sound.mp3'); 
-  }
-
-
 let circles = [];
-let backgroundMusic;
+//let backgroundMusic;
 
+//function preload() {
+//  backgroundMusic = loadSound('sound.mp3');
+//}
 
 function setup() {
-  createCanvas(400, 400);
+  canvasContainer = $("#canvas-container");
+  let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
+  canvas.parent("canvas-container");
+  // resize canvas is the page is resized
+  $(window).resize(function() {
+      console.log("Resizing...");
+      resizeCanvas(canvasContainer.width(), canvasContainer.height());
+  });
+//  backgroundMusic.loop();
 }
 
 function draw() {
   background(183, 234, 247);
 
   // Check if it's time to spawn a new circle
-  if (random() < 0.05) {
+  if (random() < 0.2) {
     let newCircle = {
       x: random(width),
       y: random(height),
@@ -24,12 +29,8 @@ function draw() {
       alpha: 255  
     };
     circles.push(newCircle);
-    
-    
   }
-
-    backgroundMusic.play();
-
+    
 
   // Update and display each circle
   for (let i = circles.length - 1; i >= 0; i--) {
@@ -48,6 +49,7 @@ function draw() {
       circles.splice(i, 1);
     }
   }
+
 }
 
 function mousePressed() {
