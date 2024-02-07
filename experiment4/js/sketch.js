@@ -1,8 +1,8 @@
 
-var image;
+var song;
 
 function preload(){
-    image = loadImage("image.png");
+    song = loadSound("song.mp3");
 }
 
 function setup() {
