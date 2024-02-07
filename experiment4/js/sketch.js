@@ -9,7 +9,6 @@ function setup() {
   // Create a button to play/pause the song
   let button = createButton('Play/Pause');
   button.mousePressed(toggleSong);
-
 }
 
 function toggleSong() {
