@@ -1,5 +1,5 @@
 
-var song;
+let song;
 
 function preload(){
     song = loadSound("song.mp3");
