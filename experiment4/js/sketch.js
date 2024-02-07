@@ -2,7 +2,7 @@ let song;
 
 function preload() {
   // Load the song
-  song = loadSound('song.mp3');
+  song = loadSound('assets/song.mp3');
 }
 
 function setup() {
