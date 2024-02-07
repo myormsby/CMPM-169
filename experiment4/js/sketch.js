@@ -1,25 +1,22 @@
-
 let song;
 
-function preload(){
-    song = loadSound("song.mp3");
+function preload() {
+  // Load the song
+  song = loadSound('song.mp3');
 }
 
 function setup() {
-    // place our canvas, making it fit our container
-    canvasContainer = $("#canvas-container");
-    let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
-    canvas.parent("canvas-container");
-    // resize canvas is the page is resized
-    $(window).resize(function() {
-        console.log("Resizing...");
-        resizeCanvas(canvasContainer.width(), canvasContainer.height());
-    });
-
+  // Create a button to play/pause the song
+  let button = createButton('Play/Pause');
+  button.mousePressed(toggleSong);
 }
 
-function draw() {
-    background(0);
+function toggleSong() {
+  if (song.isPlaying()) {
+    // If the song is playing, pause it
+    song.pause();
+  } else {
+    // If the song is paused, play it
     song.play();
+  }
 }
-
