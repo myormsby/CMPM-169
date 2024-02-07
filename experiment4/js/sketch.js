@@ -2,13 +2,14 @@ let song;
 
 function preload() {
   // Load the song
-  song = loadSound('../assets/song.mp3');
+  song = loadSound('song.mp3');
 }
 
 function setup() {
   // Create a button to play/pause the song
   let button = createButton('Play/Pause');
   button.mousePressed(toggleSong);
+
 }
 
 function toggleSong() {
