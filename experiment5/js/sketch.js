@@ -1,67 +1,62 @@
-// sketch.js - purpose and description here
-// Author: Your Name
-// Date:
+let rose;
+let bg;
+let song;
+let space;
 
-// Here is how you might set up an OOP p5.js project
-// Note that p5.js looks for a file called sketch.js
-
-// Constants - User-servicable parts
-// In a longer project I like to put these in a separate file
-const VALUE1 = 1;
-const VALUE2 = 2;
-
-// Globals
-let myInstance;
-let canvasContainer;
-
-class MyClass {
-    constructor(param1, param2) {
-        this.property1 = param1;
-        this.property2 = param2;
-    }
-
-    myMethod() {
-        // code to run when method is called
-    }
+function preload() {
+    rose = loadModel('assets/rat.obj', true)
+    bg = loadImage('assets/chese.jpg')
+    song = loadSound('assets/song.mp3')
+    space = loadImage('assets/space.jpg')
 }
 
 // setup() function is called once when the program starts
 function setup() {
     // place our canvas, making it fit our container
     canvasContainer = $("#canvas-container");
-    let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
+    let canvas = createCanvas(canvasContainer.width(), canvasContainer.height(), WEBGL);
     canvas.parent("canvas-container");
     // resize canvas is the page is resized
     $(window).resize(function() {
         console.log("Resizing...");
         resizeCanvas(canvasContainer.width(), canvasContainer.height());
     });
-    // create an instance of the class
-    myInstance = new MyClass(VALUE1, VALUE2);
 
-    var centerHorz = windowWidth / 2;
-    var centerVert = windowHeight / 2;
+    // create an instance of the class
+
 }
 
 // draw() function is called repeatedly, it's the main animation loop
 function draw() {
-    background(220);    
     // call a method on the instance
-    myInstance.myMethod();
+    push();
+    texture(space);
+    translate(0, 0, -400);
+    plane(width*2, height*2);
+    pop();
 
-    // Put drawings here
-    var centerHorz = canvasContainer.width() / 2 - 125;
-    var centerVert = canvasContainer.height() / 2 - 125;
-    fill(234, 31, 81);
+
+
+    song.setVolume(0.15);
+    push();
     noStroke();
-    rect(centerHorz, centerVert, 250, 250);
-    fill(255);
-    textStyle(BOLD);
-    textSize(140);
-    text("p5*", centerHorz + 10, centerVert + 200);
+    scale(1.5);
+    rotateY(frameCount * 0.05);
+    rotateZ(frameCount * 0.01);
+    texture(bg);
+    translate(-200, 50, 0);
+
+    model(rose);
+    pop();
+
+
 }
 
-// mousePressed() function is called once after every time a mouse button is pressed
 function mousePressed() {
-    // code to run when mouse is pressed
-}
+    // Play or pause the song when the mouse is clicked
+    if (song.isPlaying()) {
+      song.pause();
+    } else {
+      song.play();
+    }
+  }

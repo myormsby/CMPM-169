@@ -46,6 +46,7 @@ let song;
         confetti[i] = new Confetto(random(width), random(height));
       }
       dance.resize(100,100)
+      song.setVolume(0.15)
     }
 
     function draw() {
