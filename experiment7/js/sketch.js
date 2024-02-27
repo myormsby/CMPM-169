@@ -11,7 +11,7 @@ let day;
 let night;
 
 let weather;
-let light = ['sunny']
+let light = ['sunny', 'clear']
 let dark = ['clouds', 'overcast', 'rain']
 let rain = ['rain', 'drizzling', 'showers']
 
