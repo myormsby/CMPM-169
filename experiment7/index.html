@@ -20,7 +20,6 @@
 
 	<!-- Link to javascript files - DEFER waits until all elements are rendered -->
 	<!-- Use me for a JavaScript OOP Project -->
-	<script type="text/javascript" src="./js/project.js" DEFER></script>
 	<!-- Use me for a p5.js project -->
 	<script type="text/javascript" src="./js/sketch.js" DEFER></script>
 	<script src="js/p5.sound.js"></script>
@@ -71,26 +70,3 @@
 	</main>
 </body>
 </html>
-let apiEndpoint = 'https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=6845623ad53e049ee251c8bde57d4233';
-let data;
-
-function setup() {
-    createCanvas(400, 200);
-    // Make API request when the sketch starts
-    loadJSON(apiEndpoint, gotData);
-}
-
-function draw() {
-    background(220);
-    // Display the data on the canvas
-    if (data) {
-        textAlign(CENTER, CENTER);
-        textSize(18);
-        text(`Weather: ${data.weather[0].description}`, width / 2, height / 2);
-    }
-}
-
-function gotData(response) {
-    // Callback function to handle the API response
-    data = response;
-}
